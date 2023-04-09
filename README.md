@@ -1,26 +1,22 @@
-melhore esse readme coloque que utilizou o faker tambem
+# Serviço de Notificações
 
-# Microservice de Notificações
-
-Este é um microservice de notificações criado utilizando as seguintes tecnologias:
-
-- [![NestJS](https://img.shields.io/badge/-NestJS-FE0902?logo=nestjs&logoColor=white)](https://nestjs.com/) - Framework que fornece uma arquitetura escalável para desenvolvimento de apps em servidores.
-- [![Prisma](https://img.shields.io/badge/-Prisma-1B222D?logo=prisma&logoColor=white)](https://www.prisma.io/) - ORM que facilita a interação com bancos de dados.
-- [![Redis](https://img.shields.io/badge/-Redis-DC382D?logo=redis&logoColor=white)](https://redis.io/) - Banco de dados NoSQL em memória utilizado para cache e gerenciamento de filas.
-- [![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) - Superset de JavaScript que adiciona tipagem estática à linguagem.
-- Domain Driven Design - Metodologia de desenvolvimento de software que busca alinhar o código com o negócio.
-- TDD (Test Driven Development) - Metodologia de desenvolvimento de software que consiste em escrever testes antes de escrever o código.
+## 🛠️ Tecnologias Utilizadas
+-   [![NestJS](https://img.shields.io/badge/-NestJS-FE0902?logo=nestjs&logoColor=white)](https://nestjs.com/) - Framework que fornece uma arquitetura escalável para desenvolvimento de apps em servidores.
+-   [![Prisma](https://img.shields.io/badge/-Prisma-1B222D?logo=prisma&logoColor=white)](https://www.prisma.io/) - ORM que facilita a interação com bancos de dados.
+-   [![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org/index.html) - Banco de dados relacional de código aberto.
+-   [![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)](https://kafka.apache.org/) - Plataforma de streaming distribuída que permite o processamento deeventos em tempo real de forma escalável e confiável.
+-   [![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) - Superset de JavaScript que adiciona tipagem estática à linguagem.
 
 ## 🚀 Funcionalidades
 
 - Envio de notificações para usuários cadastrados no sistema.
-- Gerenciamento de filas de notificações utilizando Redis.
+- Gerenciamento de filas de notificações utilizando Apache Kafka.
 - Utilização de Domain Driven Design para alinhar o código com o negócio.
-- Utilização de TDD para garantir a qualidade do código.
+- Utilização de In-Memory Database para os testes unitários.
 
 ### 🧪 Como usar?
 
-Para utilizar o microservice de notificações, siga os seguintes passos:
+Para utilizar o serviço de notificações, siga os seguintes passos:
 
 1. Instale as dependências do projeto com o seguinte comando:
 
@@ -31,14 +27,17 @@ npm install
 2. Configure as variáveis de ambiente no arquivo `.env`, conforme o exemplo abaixo:
 
 ```
-DATABASE_URL="postgresql://user:password@localhost:5432/notificacoes"
-REDIS_URL="redis://localhost:6379"
+DATABASE_URL="file:./dev.db"
+KAFKA_CLIENT_ID="notifications"
+KAFKA_BROKER=""
+KAFKA_USERNAME=""
+KAFKA_PASSWORD=""
 ```
 
 3. Execute as migrations do banco de dados com o seguinte comando:
 
 ```bash
-npm run prisma:migrate
+npx prisma migrate dev
 ```
 
 4. Inicie o serviço com o seguinte comando:
@@ -47,15 +46,14 @@ npm run prisma:migrate
 npm run start:dev
 ```
 
-5. Envie uma requisição POST para a rota `/notifications` com o seguinte corpo:
+5. Crie os seguintes tópicos no Kafka: 
 
-```json
-{
-	"recipientId": "UUID",
-	"content": "New Notification",
-	"category": "Social"
-}
-```
+- notifications.send-notification
+- notifications.read-notification
+- notifications.unread-notification
+- notifications.cancel-notification
+
+6. Utilize via HTTP ou por meio do Kafka, criando um outro service que será o producer.
 
 ### 🛠️ Testes
 
@@ -64,5 +62,3 @@ Para executar os testes do microservice, utilize o seguinte comando:
 ```bash
 npm run test
 ```
-
-Os testes foram escritos utilizando a biblioteca Jest e cobrem as principais funcionalidades do serviço. A metodologia de TDD foi utilizada para garantir a qualidade do código e a cobertura de testes.
