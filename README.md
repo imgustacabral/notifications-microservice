@@ -4,7 +4,7 @@
 -   [![NestJS](https://img.shields.io/badge/-NestJS-FE0902?logo=nestjs&logoColor=white)](https://nestjs.com/) - Framework que fornece uma arquitetura escalável para desenvolvimento de apps em servidores.
 -   [![Prisma](https://img.shields.io/badge/-Prisma-1B222D?logo=prisma&logoColor=white)](https://www.prisma.io/) - ORM que facilita a interação com bancos de dados.
 -   [![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org/index.html) - Banco de dados relacional de código aberto.
--   [![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)](https://kafka.apache.org/) - Plataforma de streaming distribuída que permite o processamento deeventos em tempo real de forma escalável e confiável.
+-   [![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka)](https://kafka.apache.org/) - Plataforma de streaming distribuída que permite o processamento de eventos em tempor real.
 -   [![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) - Superset de JavaScript que adiciona tipagem estática à linguagem.
 
 ## 🚀 Funcionalidades
